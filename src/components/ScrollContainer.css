@@ -1,0 +1,76 @@
+.scroll-container-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  gap: 8px;
+  position: relative;
+}
+
+.scroll-container {
+  flex: 1;
+  height: 200px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 20px 15px;
+  will-change: transform;
+  min-width: min-content;
+}
+
+/* Fade effect at edges */
+.scroll-container::before,
+.scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(102, 126, 234, 1), transparent);
+}
+
+.scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(118, 75, 162, 1), transparent);
+}
+
+/* Cloned tiles should not be interactive */
+.cloned-tile {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scroll-container-wrapper {
+    gap: 5px;
+  }
+  
+  .scroll-container {
+    height: 140px;
+  }
+  
+  .scroll-content {
+    padding: 10px 8px;
+  }
+  
+  .scroll-container::before,
+  .scroll-container::after {
+    width: 30px;
+  }
+}

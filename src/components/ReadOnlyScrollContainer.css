@@ -1,0 +1,59 @@
+.readonly-scroll-container {
+  width: 100%;
+  height: 120px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  margin: 5px 0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.readonly-scroll-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 15px 10px;
+  min-width: min-content;
+}
+
+/* Fade effect at edges */
+.readonly-scroll-container::before,
+.readonly-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.readonly-scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(149, 165, 166, 1), transparent);
+}
+
+.readonly-scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(127, 140, 141, 1), transparent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .readonly-scroll-container {
+    height: 90px;
+    margin: 3px 0;
+  }
+  
+  .readonly-scroll-content {
+    padding: 10px 6px;
+  }
+  
+  .readonly-scroll-container::before,
+  .readonly-scroll-container::after {
+    width: 30px;
+  }
+}

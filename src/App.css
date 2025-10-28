@@ -1,0 +1,124 @@
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 0;
+  margin: 0;
+}
+
+.app-header {
+  text-align: center;
+  padding: 20px 15px 15px;
+  color: white;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #fff, #e0e7ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-header p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.app-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px 15px;
+}
+
+.readonly-scrolls-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-controls {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 30px;
+  margin: 40px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.app-controls h3 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+}
+
+.app-controls ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-controls li {
+  padding: 8px 0;
+  color: #34495e;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tile-stats {
+  background: rgba(52, 73, 94, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  border-left: 4px solid #3498db;
+}
+
+.tile-stats p {
+  margin: 5px 0;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 15px 10px 10px;
+  }
+  
+  .app-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+  
+  .app-header p {
+    font-size: 0.75rem;
+  }
+  
+  .app-main {
+    padding: 0 10px 10px;
+  }
+  
+  .readonly-scrolls-container {
+    gap: 5px;
+  }
+  
+  .app-controls {
+    padding: 20px;
+    margin: 30px 0;
+  }
+  
+  .app-controls h3 {
+    font-size: 1.2rem;
+  }
+  
+  .app-controls li {
+    font-size: 0.9rem;
+  }
+}
