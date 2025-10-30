@@ -10,14 +10,9 @@ const AddTile = ({ onAddTile }) => {
   };
 
   return (
-    <div className="add-tile" onClick={handleClick}>
-      <div className="add-tile-icon">
-        +
-      </div>
-      <div className="add-tile-content">
-        <p className="add-tile-text">Add New Tile</p>
-      </div>
-    </div>
+    <button className="add-tile" onClick={handleClick} title="Add New Tile">
+      +
+    </button>
   );
 };
 

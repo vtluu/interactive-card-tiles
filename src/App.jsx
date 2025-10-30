@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ScrollContainer from './components/ScrollContainer'
 import ReadOnlyScrollContainer from './components/ReadOnlyScrollContainer'
+import AddTile from './components/AddTile'
 import './App.css'
 
 function App() {
@@ -79,15 +80,18 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Interactive Card Tiles</h1>
-        <p>Click on tiles to assign card suits (♥️ ♠️ ♦️ ♣️) • Use the + button to add new tiles</p>
+        <p>Click on tiles to assign card suits (♥️ ♠️ ♦️ ♣️)</p>
       </header>
       
       <main className="app-main">
+        <div className="add-tile-container">
+          <AddTile onAddTile={handleAddTile} />
+        </div>
+        
         <ScrollContainer 
           tiles={tiles} 
           speed={30} 
           onSuitChange={handleSuitChange}
-          onAddTile={handleAddTile}
         />
         
         <div className="readonly-scrolls-container">
