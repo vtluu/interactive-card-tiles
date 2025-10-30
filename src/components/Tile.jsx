@@ -11,13 +11,47 @@ const cardSuits = {
 const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
   const [showSelector, setShowSelector] = useState(false);
   const isClosingRef = useRef(false);
+  const touchStartRef = useRef(null);
 
   const handleTileClick = (e) => {
     e.stopPropagation();
+    e.preventDefault();
     if (isClosingRef.current) {
       return;
     }
     setShowSelector(true);
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+      time: Date.now()
+    };
+  };
+
+  const handleTouchEnd = (e) => {
+    e.preventDefault();
+    if (!touchStartRef.current) return;
+    
+    const touchEnd = {
+      x: e.changedTouches[0].clientX,
+      y: e.changedTouches[0].clientY,
+      time: Date.now()
+    };
+    
+    const deltaX = Math.abs(touchEnd.x - touchStartRef.current.x);
+    const deltaY = Math.abs(touchEnd.y - touchStartRef.current.y);
+    const deltaTime = touchEnd.time - touchStartRef.current.time;
+    
+    // Only trigger if it's a tap (not a scroll/swipe)
+    if (deltaX < 10 && deltaY < 10 && deltaTime < 300) {
+      if (!isClosingRef.current) {
+        setShowSelector(true);
+      }
+    }
+    
+    touchStartRef.current = null;
   };
 
   const handleSuitSelect = (e, selectedSuit) => {
@@ -30,7 +64,7 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
     setShowSelector(false);
     setTimeout(() => {
       isClosingRef.current = false;
-    }, 300);
+    }, 350);
   };
 
   const handleBackdropClick = (e) => {
@@ -40,7 +74,7 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
     setShowSelector(false);
     setTimeout(() => {
       isClosingRef.current = false;
-    }, 300);
+    }, 350);
   };
 
   const getSuitColor = (suitType) => {
@@ -54,6 +88,8 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
     <div 
       className={`tile ${isBlank && !suit ? 'tile-blank' : 'tile-assigned'}`} 
       onClick={handleTileClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <div className="tile-icon" style={{ color: suit ? getSuitColor(suit) : 'white' }}>
         {suit ? cardSuits[suit] : '?'}
@@ -69,6 +105,7 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
                   key={suitKey}
                   className="suit-option"
                   onClick={(e) => handleSuitSelect(e, suitKey)}
+                  onTouchEnd={(e) => handleSuitSelect(e, suitKey)}
                   style={{ color: getSuitColor(suitKey) }}
                   title={suitKey.charAt(0).toUpperCase() + suitKey.slice(1)}
                 >
