@@ -12,7 +12,7 @@ const themedImages = {
   spade: '🚀',    // Spaceship for spade
   diamond: '💍',  // Diamond ring for diamond
   heart: '💑',    // Couple/sweetheart for heart
-  club: '�'      // Fly (closest to dragonfly)
+  club: '🐝'      // Bee for club
 };
 
 const ReadOnlyTile = ({ suit, isBlank = true, showImages = false }) => {
