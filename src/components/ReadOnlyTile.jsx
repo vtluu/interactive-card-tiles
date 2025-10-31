@@ -8,7 +8,14 @@ const cardSuits = {
   club: '♣️'
 };
 
-const ReadOnlyTile = ({ suit, isBlank = true }) => {
+const themedImages = {
+  spade: '🚀',    // Spaceship for spade
+  diamond: '💍',  // Diamond ring for diamond
+  heart: '💑',    // Couple/sweetheart for heart
+  club: '�'      // Fly (closest to dragonfly)
+};
+
+const ReadOnlyTile = ({ suit, isBlank = true, showImages = false }) => {
   const getSuitColor = (suitType) => {
     if (suitType === 'heart' || suitType === 'diamond') {
       return '#e74c3c'; // Red for hearts and diamonds
@@ -21,7 +28,7 @@ const ReadOnlyTile = ({ suit, isBlank = true }) => {
       className={`readonly-tile ${isBlank && !suit ? 'readonly-tile-blank' : 'readonly-tile-assigned'}`}
     >
       <div className="readonly-tile-icon" style={{ color: suit ? getSuitColor(suit) : '#999' }}>
-        {suit ? cardSuits[suit] : '?'}
+        {suit ? (showImages ? themedImages[suit] : cardSuits[suit]) : '?'}
       </div>
     </div>
   );

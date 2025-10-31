@@ -2,7 +2,7 @@ import React from 'react';
 import Tile from './Tile';
 import './ScrollContainer.css';
 
-const ScrollContainer = ({ tiles, onSuitChange }) => {
+const ScrollContainer = ({ tiles, onSuitChange, showImages = false }) => {
   return (
     <div className="scroll-container">
       <div className="scroll-content">
@@ -13,6 +13,7 @@ const ScrollContainer = ({ tiles, onSuitChange }) => {
             onSuitChange={onSuitChange}
             index={index}
             isBlank={!tile.suit}
+            showImages={showImages}
           />
         ))}
       </div>

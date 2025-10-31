@@ -8,7 +8,14 @@ const cardSuits = {
   club: '♣️'
 };
 
-const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
+const themedImages = {
+  spade: '🚀',    // Spaceship for spade
+  diamond: '💍',  // Diamond ring for diamond
+  heart: '💑',    // Couple/sweetheart for heart
+  club: '�'      // Fly (closest to dragonfly)
+};
+
+const Tile = ({ suit, onSuitChange, isBlank = true, index, showImages = false }) => {
   const [showSelector, setShowSelector] = useState(false);
   const isClosingRef = useRef(false);
   const touchStartRef = useRef(null);
@@ -92,7 +99,7 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
       onTouchEnd={handleTouchEnd}
     >
       <div className="tile-icon" style={{ color: suit ? getSuitColor(suit) : 'white' }}>
-        {suit ? cardSuits[suit] : '?'}
+        {suit ? (showImages ? themedImages[suit] : cardSuits[suit]) : '?'}
       </div>
       
       {showSelector && (

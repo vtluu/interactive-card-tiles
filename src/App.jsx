@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ScrollContainer from './components/ScrollContainer'
 import ReadOnlyScrollContainer from './components/ReadOnlyScrollContainer'
 import AddTile from './components/AddTile'
+import ToggleImageButton from './components/ToggleImageButton'
 import './App.css'
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
   
   // Track the initial 6 tile IDs
   const initialTileIds = [1, 2, 3, 4, 5, 6];
+  
+  // Toggle between card suits and themed images
+  const [showImages, setShowImages] = useState(false);
 
   const handleSuitChange = (index, suit) => {
     setTiles(prevTiles => 
@@ -81,25 +85,29 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Interactive Card Tiles</h1>
-        <p>Click on tiles to assign card suits (♥️ ♠️ ♦️ ♣️)</p>
       </header>
       
       <main className="app-main">
         <div className="add-tile-container">
           <AddTile onAddTile={handleAddTile} />
+          <ToggleImageButton 
+            onToggle={() => setShowImages(!showImages)} 
+            showImages={showImages}
+          />
         </div>
         
         <ScrollContainer 
           tiles={tiles} 
           speed={30} 
           onSuitChange={handleSuitChange}
+          showImages={showImages}
         />
         
         <div className="readonly-scrolls-container">
-          <ReadOnlyScrollContainer tiles={diamondTiles} />
-          <ReadOnlyScrollContainer tiles={heartTiles} />
-          <ReadOnlyScrollContainer tiles={clubTiles} />
-          <ReadOnlyScrollContainer tiles={spadeTiles} />
+          <ReadOnlyScrollContainer tiles={diamondTiles} showImages={showImages} />
+          <ReadOnlyScrollContainer tiles={heartTiles} showImages={showImages} />
+          <ReadOnlyScrollContainer tiles={clubTiles} showImages={showImages} />
+          <ReadOnlyScrollContainer tiles={spadeTiles} showImages={showImages} />
         </div>
       </main>
     </div>

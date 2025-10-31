@@ -1,0 +1,47 @@
+.toggle-image-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  line-height: 1;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  margin-left: 8px;
+}
+
+/* Only apply hover on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .toggle-image-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+  }
+}
+
+/* Touch feedback for mobile */
+.toggle-image-button:active {
+  transform: scale(0.95);
+  background: linear-gradient(135deg, #a93226, #922b21);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .toggle-image-button {
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
+    margin-left: 6px;
+  }
+}
