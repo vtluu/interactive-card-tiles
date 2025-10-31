@@ -116,12 +116,6 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index }) => {
           </div>
         </div>
       )}
-      
-      <div className="tile-content">
-        <p className="tile-instruction">
-          {suit ? 'Click to change' : 'Click to assign'}
-        </p>
-      </div>
     </div>
   );
 };
