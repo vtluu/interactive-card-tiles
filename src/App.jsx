@@ -11,11 +11,12 @@ function App() {
     { id: 2, suit: null },
     { id: 3, suit: null },
     { id: 4, suit: null },
-    { id: 5, suit: null }
+    { id: 5, suit: null },
+    { id: 6, suit: null }
   ]);
   
-  // Track the initial 5 tile IDs
-  const initialTileIds = [1, 2, 3, 4, 5];
+  // Track the initial 6 tile IDs
+  const initialTileIds = [1, 2, 3, 4, 5, 6];
 
   const handleSuitChange = (index, suit) => {
     setTiles(prevTiles => 
@@ -35,12 +36,12 @@ function App() {
 
   // Bottom scrolls logic:
   // - Show only assigned tiles from main scroll
-  // - After initial 5 are assigned, show FIRST 5 assigned tiles (most recent) + auto-assign new tiles
+  // - After initial 6 are assigned, show FIRST 6 assigned tiles (most recent) + auto-assign new tiles
   const assignedTiles = tiles.filter(tile => tile.suit !== null);
   
-  // Check if all initial 5 tiles are assigned
+  // Check if all initial 6 tiles are assigned
   const initialTiles = tiles.filter(tile => initialTileIds.includes(tile.id));
-  const initialTilesAssigned = initialTiles.length === 5 && initialTiles.every(tile => tile.suit !== null);
+  const initialTilesAssigned = initialTiles.length === 6 && initialTiles.every(tile => tile.suit !== null);
   
   let diamondTiles, heartTiles, clubTiles, spadeTiles;
   
@@ -51,28 +52,28 @@ function App() {
     clubTiles = assignedTiles;
     spadeTiles = assignedTiles;
   } else {
-    // Stage 4+: Show first 5 assigned tiles (most recent, from left) + auto-assign new unassigned tiles
-    const first5Assigned = assignedTiles.slice(0, 5);
+    // Stage 4+: Show first 6 assigned tiles (most recent, from left) + auto-assign new unassigned tiles
+    const first6Assigned = assignedTiles.slice(0, 6);
     const unassignedTiles = tiles.filter(tile => tile.suit === null);
     
     diamondTiles = [
       ...unassignedTiles.map(tile => ({ ...tile, suit: 'diamond' })),
-      ...first5Assigned
+      ...first6Assigned
     ];
     
     heartTiles = [
       ...unassignedTiles.map(tile => ({ ...tile, suit: 'heart' })),
-      ...first5Assigned
+      ...first6Assigned
     ];
     
     clubTiles = [
       ...unassignedTiles.map(tile => ({ ...tile, suit: 'club' })),
-      ...first5Assigned
+      ...first6Assigned
     ];
     
     spadeTiles = [
       ...unassignedTiles.map(tile => ({ ...tile, suit: 'spade' })),
-      ...first5Assigned
+      ...first6Assigned
     ];
   }
 

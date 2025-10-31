@@ -1,6 +1,6 @@
 .readonly-scroll-container {
   width: 100%;
-  height: 120px;
+  height: 105px;
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
@@ -23,7 +23,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .readonly-scroll-container {
-    height: 90px;
+    height: 80px;
     margin: 3px 0;
   }
   

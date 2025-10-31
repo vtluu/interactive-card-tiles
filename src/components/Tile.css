@@ -1,13 +1,13 @@
 .tile {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
-  margin: 0 6px;
+  padding: 6px;
+  margin: 0 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   flex-shrink: 0;
@@ -51,7 +51,7 @@
 }
 
 .tile-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 5px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: bold;
@@ -177,15 +177,15 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .tile {
-    width: 60px;
-    height: 60px;
-    padding: 6px;
-    margin: 0 4px;
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+    margin: 0 3px;
   }
   
   .tile-icon {
-    font-size: 2rem;
-    margin-bottom: 3px;
+    font-size: 1.8rem;
+    margin-bottom: 2px;
   }
   
   .tile-instruction {

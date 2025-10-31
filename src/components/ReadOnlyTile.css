@@ -1,13 +1,13 @@
 .readonly-tile {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
-  margin: 0 6px;
+  padding: 6px;
+  margin: 0 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
   position: relative;
@@ -35,13 +35,13 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .readonly-tile {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     padding: 5px;
-    margin: 0 4px;
+    margin: 0 3px;
   }
   
   .readonly-tile-icon {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
