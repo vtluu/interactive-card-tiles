@@ -4,6 +4,7 @@ import ReadOnlyScrollContainer from './components/ReadOnlyScrollContainer'
 import AddTile from './components/AddTile'
 import ToggleImageButton from './components/ToggleImageButton'
 import ColorGroupGrid from './components/ColorGroupGrid'
+import SuitGroupGrid from './components/SuitGroupGrid'
 import './App.css'
 
 function App() {
@@ -112,6 +113,7 @@ function App() {
         </div>
         
         <ColorGroupGrid tiles={tiles} showImages={showImages} />
+        <SuitGroupGrid tiles={tiles} showImages={showImages} />
       </main>
     </div>
   )
