@@ -19,14 +19,30 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index, showImages = false })
   const [showSelector, setShowSelector] = useState(false);
   const isClosingRef = useRef(false);
   const touchStartRef = useRef(null);
+  const clickTimeoutRef = useRef(null);
+  const selectorOpenedRef = useRef(false);
+
+  useEffect(() => {
+    // Cleanup timeout on unmount
+    return () => {
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleTileClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    if (isClosingRef.current) {
+    
+    if (isClosingRef.current || selectorOpenedRef.current) {
       return;
     }
-    setShowSelector(true);
+    
+    if (!showSelector) {
+      selectorOpenedRef.current = true;
+      setShowSelector(true);
+    }
   };
 
   const handleTouchStart = (e) => {
@@ -64,24 +80,45 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index, showImages = false })
   const handleSuitSelect = (e, selectedSuit) => {
     e.stopPropagation();
     e.preventDefault();
+    
+    if (isClosingRef.current) return;
+    
     isClosingRef.current = true;
+    selectorOpenedRef.current = false;
+    
+    // Close the selector immediately
+    setShowSelector(false);
+    
+    // Call the onChange handler
     if (onSuitChange) {
       onSuitChange(index, selectedSuit);
     }
-    setShowSelector(false);
-    setTimeout(() => {
+    
+    // Reset the closing flag after a delay
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+    }
+    clickTimeoutRef.current = setTimeout(() => {
       isClosingRef.current = false;
-    }, 350);
+    }, 800);
   };
 
   const handleBackdropClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
+    
+    if (isClosingRef.current) return;
+    
     isClosingRef.current = true;
+    selectorOpenedRef.current = false;
     setShowSelector(false);
-    setTimeout(() => {
+    
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+    }
+    clickTimeoutRef.current = setTimeout(() => {
       isClosingRef.current = false;
-    }, 350);
+    }, 800);
   };
 
   const getSuitColor = (suitType) => {
@@ -103,16 +140,16 @@ const Tile = ({ suit, onSuitChange, isBlank = true, index, showImages = false })
       </div>
       
       {showSelector && (
-        <div className="suit-selector" onClick={(e) => e.stopPropagation()}>
-          <div className="suit-selector-backdrop" onClick={handleBackdropClick} />
+        <div className="suit-selector" onMouseDown={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()}>
+          <div className="suit-selector-backdrop" onMouseDown={handleBackdropClick} onClick={handleBackdropClick} />
           <div className="suit-options">
             <div className="suit-options-grid">
               {Object.entries(cardSuits).map(([suitKey, suitSymbol]) => (
                 <button
                   key={suitKey}
                   className="suit-option"
-                  onClick={(e) => handleSuitSelect(e, suitKey)}
-                  onTouchEnd={(e) => handleSuitSelect(e, suitKey)}
+                  onMouseDown={(e) => handleSuitSelect(e, suitKey)}
+                  onClick={(e) => e.stopPropagation()}
                   style={{ color: getSuitColor(suitKey) }}
                   title={suitKey.charAt(0).toUpperCase() + suitKey.slice(1)}
                 >

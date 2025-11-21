@@ -1,0 +1,99 @@
+.color-group-grid {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.grid-title {
+  color: white;
+  font-size: 1.3rem;
+  margin: 0 0 15px 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+.grid-columns {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grid-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.grid-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.grid-tile:hover {
+  transform: scale(1.1);
+}
+
+.grid-tile-icon {
+  font-size: 0.6rem;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.empty-grid-message {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 30px;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .color-group-grid {
+    padding: 10px;
+    margin-top: 15px;
+  }
+
+  .grid-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .grid-columns {
+    gap: 8px;
+  }
+
+  .grid-column {
+    padding: 6px;
+  }
+
+  .grid-tile {
+    width: 12px;
+    height: 12px;
+  }
+
+  .grid-tile-icon {
+    font-size: 0.5rem;
+  }
+
+  .empty-grid-message {
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+}

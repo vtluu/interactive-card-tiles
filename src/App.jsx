@@ -3,6 +3,7 @@ import ScrollContainer from './components/ScrollContainer'
 import ReadOnlyScrollContainer from './components/ReadOnlyScrollContainer'
 import AddTile from './components/AddTile'
 import ToggleImageButton from './components/ToggleImageButton'
+import ColorGroupGrid from './components/ColorGroupGrid'
 import './App.css'
 
 function App() {
@@ -109,6 +110,8 @@ function App() {
           <ReadOnlyScrollContainer tiles={clubTiles} showImages={showImages} />
           <ReadOnlyScrollContainer tiles={spadeTiles} showImages={showImages} />
         </div>
+        
+        <ColorGroupGrid tiles={tiles} showImages={showImages} />
       </main>
     </div>
   )
